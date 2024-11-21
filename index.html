@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trình tạo cấu hình cá</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #0066cc;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .hint {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .config-box {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .copy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+        .biomes-list {
+            columns: 2;
+            -webkit-columns: 2;
+            -moz-columns: 2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Trình tạo cấu hình cá</h1>
+
+<form id="fishForm">
+    <div class="field">
+        <label for="name">Tên:</label>
+        <input type="text" id="name" name="name" placeholder="&6&lTuna">
+        <span class="hint">Ví dụ: &6&lTuna</span>
+    </div>
+
+    <div class="field">
+        <label for="description">Mô tả:</label>
+        <input type="text" id="description" name="description" placeholder="Tuna? Ai mà không thích tuna?">
+        <span class="hint">Ví dụ: Tuna? Ai mà không thích tuna?</span>
+    </div>
+
+    <div class="field">
+        <label for="material">Vật liệu:</label>
+        <input type="text" id="material" name="material" placeholder="COD">
+        <span class="hint">Ví dụ: COD</span>
+    </div>
+
+    <div class="field">
+        <label for="sellPrice">Giá bán:</label>
+        <input type="number" id="sellPrice" name="sellPrice" placeholder="1000">
+        <span class="hint">Ví dụ: 1000</span>
+    </div>
+
+    <div class="field">
+        <label for="allBiomes">Tất cả các Biome:</label>
+        <input type="checkbox" id="allBiomes" name="allBiomes">
+        <span class="hint">Chọn nếu cá có thể xuất hiện ở tất cả các biome</span>
+    </div>
+
+    <div class="field">
+        <label>Biomes:</label>
+        <div id="biomes" class="biomes-list">
+            <input type="checkbox" name="biomes" value="OCEAN"> OCEAN<br>
+            <input type="checkbox" name="biomes" value="PLAINS"> PLAINS<br>
+            <input type="checkbox" name="biomes" value="JUNGLE"> JUNGLE<br>
+            <input type="checkbox" name="biomes" value="RIVER"> RIVER<br>
+            <input type="checkbox" name="biomes" value="ICE_SPIKES"> ICE_SPIKES<br>
+            <input type="checkbox" name="biomes" value="BADLANDS"> BADLANDS<br>
+            <input type="checkbox" name="biomes" value="STONE_SHORE"> STONE_SHORE<br>
+            <input type="checkbox" name="biomes" value="MOUNTAINS"> MOUNTAINS<br>
+            <input type="checkbox" name="biomes" value="FOREST"> FOREST<br>
+            <input type="checkbox" name="biomes" value="DESERT"> DESERT<br>
+            <input type="checkbox" name="biomes" value="SWAMP"> SWAMP<br>
+            <input type="checkbox" name="biomes" value="SAVANNA"> SAVANNA<br>
+            <input type="checkbox" name="biomes" value="TAIGA"> TAIGA<br>
+            <input type="checkbox" name="biomes" value="SNOWY_TUNDRA"> SNOWY_TUNDRA<br>
+            <input type="checkbox" name="biomes" value="MUSHROOM_FIELDS"> MUSHROOM_FIELDS<br>
+            <input type="checkbox" name="biomes" value="NETHER"> NETHER<br>
+            <input type="checkbox" name="biomes" value="END"> END<br>
+            <!-- Add more biomes as needed -->
+        </div>
+        <span class="hint">Chọn các biome mà cá có thể xuất hiện</span>
+    </div>
+
+    <div class="field">
+        <label for="glowing">Phát sáng:</label>
+        <input type="checkbox" id="glowing" name="glowing">
+        <span class="hint">Chọn nếu cá phát sáng</span>
+    </div>
+
+    <div class="field">
+        <label for="eatingCommands">Lệnh khi ăn:</label>
+        <textarea id="eatingCommands" name="eatingCommands" rows="3" placeholder="msg PLAYER You ate this fish!\nfeed PLAYER"></textarea>
+        <span class="hint">Nhập mỗi lệnh trên một dòng mới</span>
+    </div>
+
+    <div class="field">
+        <label for="customModelDataUse">Sử dụng dữ liệu mô hình tùy chỉnh:</label>
+        <input type="checkbox" id="customModelDataUse" name="customModelDataUse">
+        <span class="hint">Chọn nếu sử dụng dữ liệu mô hình tùy chỉnh</span>
+    </div>
+
+    <div class="field">
+        <label for="customModelDataNumber">Số dữ liệu mô hình tùy chỉnh:</label>
+        <input type="number" id="customModelDataNumber" name="customModelDataNumber" placeholder="1">
+        <span class="hint">Ví dụ: 1</span>
+    </div>
+
+    <div class="field">
+        <label for="timeCycleEnabled">Kích hoạt chu kỳ thời gian:</label>
+        <input type="checkbox" id="timeCycleEnabled" name="timeCycleEnabled">
+        <span class="hint">Chọn nếu chu kỳ thời gian được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="spawnDuringDay">Xuất hiện vào ban ngày:</label>
+        <input type="checkbox" id="spawnDuringDay" name="spawnDuringDay">
+        <span class="hint">Chọn nếu cá xuất hiện vào ban ngày</span>
+    </div>
+
+    <div class="field">
+        <label for="weatherCycleEnabled">Kích hoạt chu kỳ thời tiết:</label>
+        <input type="checkbox" id="weatherCycleEnabled" name="weatherCycleEnabled">
+        <span class="hint">Chọn nếu chu kỳ thời tiết được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="spawnDuringRain">Xuất hiện khi mưa:</label>
+        <input type="checkbox" id="spawnDuringRain" name="spawnDuringRain">
+        <span class="hint">Chọn nếu cá xuất hiện khi mưa</span>
+    </div>
+
+    <div class="field">
+        <label for="yLevelEnabled">Kích hoạt Y-Level:</label>
+        <input type="checkbox" id="yLevelEnabled" name="yLevelEnabled">
+        <span class="hint">Chọn nếu Y-Level được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="yLevelLower">Y-Level thấp nhất:</label>
+        <input type="number" id="yLevelLower" name="yLevelLower" placeholder="30">
+        <span class="hint">Ví dụ: 30</span>
+    </div>
+
+    <div class="field">
+        <label for="yLevelUpper">Y-Level cao nhất:</label>
+        <input type="number" id="yLevelUpper" name="yLevelUpper" placeholder="80">
+        <span class="hint">Ví dụ: 80</span>
+    </div>
+
+    <div class="field">
+        <label for="catchCommands">Lệnh khi bắt:</label>
+        <textarea id="catchCommands" name="catchCommands" rows="3" placeholder="''"></textarea>
+        <span class="hint">Nhập mỗi lệnh trên một dòng mới</span>
+    </div>
+
+    <div class="field">
+        <label for="regionEnabled">Kích hoạt vùng:</label>
+        <input type="checkbox" id="regionEnabled" name="regionEnabled">
+        <span class="hint">Chọn nếu vùng được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="regions">Vùng:</label>
+        <textarea id="regions" name="regions" rows="3" placeholder="''"></textarea>
+        <span class="hint">Nhập mỗi vùng trên một dòng mới</span>
+    </div>
+
+    <div class="field">
+        <label for="sellPriceOverrideEnabled">Kích hoạt ghi đè giá bán:</label>
+        <input type="checkbox" id="sellPriceOverrideEnabled" name="sellPriceOverrideEnabled">
+        <span class="hint">Chọn nếu ghi đè giá bán được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="disableGivingFishItem">Vô hiệu hóa trao vật phẩm cá:</label>
+        <input type="checkbox" id="disableGivingFishItem" name="disableGivingFishItem">
+        <span class="hint">Chọn nếu trao vật phẩm cá bị vô hiệu hóa</span>
+    </div>
+
+    <div class="field">
+        <label for="enabled">Kích hoạt:</label>
+        <input type="checkbox" id="enabled" name="enabled" checked>
+        <span class="hint">Chọn nếu cá được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="worldsEnabled">Kích hoạt thế giới:</label>
+        <input type="checkbox" id="worldsEnabled" name="worldsEnabled">
+        <span class="hint">Chọn nếu thế giới được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="worlds">Thế giới:</label>
+        <textarea id="worlds" name="worlds" rows="3" placeholder="''"></textarea>
+        <span class="hint">Nhập mỗi thế giới trên một dòng mới</span>
+    </div>
+
+    <div class="field">
+        <label for="sellCommandsEnabled">Kích hoạt lệnh bán:</label>
+        <input type="checkbox" id="sellCommandsEnabled" name="sellCommandsEnabled">
+        <span class="hint">Chọn nếu lệnh bán được kích hoạt</span>
+    </div>
+
+    <div class="field">
+        <label for="sellCommands">Lệnh bán:</label>
+        <textarea id="sellCommands" name="sellCommands" rows="3" placeholder="''"></textarea>
+        <span class="hint">Nhập mỗi lệnh trên một dòng mới</span>
+    </div>
+
+    <div class="field">
+        <label for="catchPermission">Quyền bắt:</label>
+        <input type="text" id="catchPermission" name="catchPermission" placeholder="''">
+        <span class="hint">Ví dụ: ''</span>
+    </div>
+
+    <input type="submit" value="Tạo cấu hình" class="copy-btn">
+</form>
+
+<div class="config-box" id="configBox">
+    <pre id="configOutput"></pre>
+    <button class="copy-btn" onclick="copyConfig()">Sao chép cấu hình</button>
+</div>
+
+<script>
+    document.getElementById('fishForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value || '&6&lTuna';
+        const allBiomes = document.getElementById('allBiomes').checked;
+        const biomes = Array.from(document.querySelectorAll('input[name="biomes"]:checked')).map(el => el.value).join(', ') || 'OCEAN, PLAINS, JUNGLE, RIVER, ICE_SPIKES, BADLANDS, STONE_SHORE, MOUNTAINS';
+        const description = document.getElementById('description').value || "Tuna? Ai mà không thích tuna?";
+        const glowing = document.getElementById('glowing').checked;
+        const eatingCommands = document.getElementById('eatingCommands').value.trim().split('\n').filter(cmd => cmd).map(cmd => `  - ${cmd}`) || ['  - msg PLAYER You ate this fish!', '  - feed PLAYER'];
+        const customModelDataUse = document.getElementById('customModelDataUse').checked;
+        const customModelDataNumber = document.getElementById('customModelDataNumber').value || 1;
+        const timeCycleEnabled = document.getElementById('timeCycleEnabled').checked;
+        const spawnDuringDay = document.getElementById('spawnDuringDay').checked;
+        const weatherCycleEnabled = document.getElementById('weatherCycleEnabled').checked;
+        const spawnDuringRain = document.getElementById('spawnDuringRain').checked;
+        const yLevelEnabled = document.getElementById('yLevelEnabled').checked;
+        const yLevelLower = document.getElementById('yLevelLower').value || 30;
+        const yLevelUpper = document.getElementById('yLevelUpper').value || 80;
+        const catchCommands = document.getElementById('catchCommands').value.trim().split('\n').filter(cmd => cmd).map(cmd => `  - ${cmd}`) || ['  - '];
+        const regionEnabled = document.getElementById('regionEnabled').checked;
+        const regions = document.getElementById('regions').value.trim().split('\n').filter(region => region).map(region => `  - ${region}`) || ['  - '];
+        const material = document.getElementById('material').value || 'COD';
+        const sellPriceOverrideEnabled = document.getElementById('sellPriceOverrideEnabled').checked;
+        const sellPrice = document.getElementById('sellPrice').value || 1000;
+        const disableGivingFishItem = document.getElementById('disableGivingFishItem').checked;
+        const enabled = document.getElementById('enabled').checked;
+        const worldsEnabled = document.getElementById('worldsEnabled').checked;
+        const worlds = document.getElementById('worlds').value.trim().split('\n').filter(world => world).map(world => `  - ${world}`) || ['  - '];
+        const sellCommandsEnabled = document.getElementById('sellCommandsEnabled').checked;
+        const sellCommands = document.getElementById('sellCommands').value.trim().split('\n').filter(cmd => cmd).map(cmd => `  - ${cmd}`) || ['  - '];
+        const catchPermission = document.getElementById('catchPermission').value || '';
+
+        const config = `
+'1':
+  Name: '${name}'
+  AllBiomes: ${allBiomes}
+  Biomes: ${biomes}
+  Description: ${description}
+  Glowing: ${glowing}
+  EatingCommands:
+${eatingCommands.join('\n')}
+  CustomModelData:
+    Use: ${customModelDataUse}
+    Number: ${customModelDataNumber}
+  TimeCycle:
+    Enabled: ${timeCycleEnabled}
+    SpawnDuringDay: ${spawnDuringDay}
+  WeatherCycle:
+    Enabled: ${weatherCycleEnabled}
+    SpawnDuringRain: ${spawnDuringRain}
+  Y-Level:
+    Enabled: ${yLevelEnabled}
+    Lower: ${yLevelLower}
+    Upper: ${yLevelUpper}
+  CatchCommands:
+${catchCommands.join('\n')}
+  Region:
+    Enabled: ${regionEnabled}
+    Regions:
+${regions.join('\n')}
+  Material: ${material}
+  SellPriceOverride:
+    Enabled: ${sellPriceOverrideEnabled}
+    Price: ${sellPrice}
+  DisableGivingFishItem: ${disableGivingFishItem}
+  Enabled: ${enabled}
+  Worlds:
+    Enabled: ${worldsEnabled}
+    Worlds:
+${worlds.join('\n')}
+  SellCommands:
+    Enabled: ${sellCommandsEnabled}
+    Commands:
+${sellCommands.join('\n')}
+  CatchPermission: ${catchPermission}
+`;
+
+        document.getElementById('configOutput').textContent = config;
+    });
+
+    function copyConfig() {
+        const configOutput = document.getElementById('configOutput');
+        const range = document.createRange();
+        range.selectNode(configOutput);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        alert('Cấu hình đã được sao chép vào clipboard!');
+    }
+</script>
+
+</body>
+</html>
